@@ -53,12 +53,12 @@ namespace TP12
             this.label7 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.bibliothequeDataSet1 = new TP12.bibliothequeDataSet1();
             this.thèmeBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bibliothequeDataSet1 = new TP12.bibliothequeDataSet1();
             this.thèmeTableAdapter = new TP12.bibliothequeDataSet1TableAdapters.ThèmeTableAdapter();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bibliothequeDataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.thèmeBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bibliothequeDataSet1)).BeginInit();
             this.SuspendLayout();
             // 
             // label6
@@ -194,7 +194,7 @@ namespace TP12
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(102, 31);
             this.button1.TabIndex = 40;
-            this.button1.Text = "Nouveau";
+            this.button1.Text = "Ajouter";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -287,15 +287,15 @@ namespace TP12
             this.comboBox1.TabIndex = 55;
             this.comboBox1.ValueMember = "CodeTh";
             // 
-            // bibliothequeDataSet1
-            // 
-            this.bibliothequeDataSet1.DataSetName = "bibliothequeDataSet1";
-            this.bibliothequeDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // thèmeBindingSource
             // 
             this.thèmeBindingSource.DataMember = "Thème";
             this.thèmeBindingSource.DataSource = this.bibliothequeDataSet1;
+            // 
+            // bibliothequeDataSet1
+            // 
+            this.bibliothequeDataSet1.DataSetName = "bibliothequeDataSet1";
+            this.bibliothequeDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // thèmeTableAdapter
             // 
@@ -332,8 +332,8 @@ namespace TP12
             this.Load += new System.EventHandler(this.Form3_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bibliothequeDataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.thèmeBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bibliothequeDataSet1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

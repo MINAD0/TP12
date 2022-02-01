@@ -157,21 +157,28 @@ namespace TP12
 
         private void button1_Click(object sender, EventArgs e)
         {
-            try
+            if (button1.Text == "Nouveau")
+            {
+                textBox1.Clear();
+                textBox2.Clear();
+                textBox3.Clear();
+                dateTimePicker1.ResetText();
+                button1.Text = "Ajouter";
+
+            }
+            else if (button1.Text == "Ajouter")
             {
                 con.Open();
 
-                string req = "insert into Adherent values (" + textBox1.Text + ",'" + textBox2.Text + "','"+textBox3.Text+"','"+dateTimePicker1.Value+"')";
+                string req = "insert into Adherent values (" + textBox1.Text + ",'" + textBox2.Text + "','" + textBox3.Text + "','" + dateTimePicker1.Value + "')";
                 SqlCommand sc = new SqlCommand(req, con);
                 sc.ExecuteNonQuery();
                 MessageBox.Show("Ajout bien fait");
 
                 con.Close();
-                
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
+
+                button1.Text = "Nouveau";
+
             }
         }
 
