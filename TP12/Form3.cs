@@ -11,9 +11,9 @@ using System.Data.SqlClient;
 
 namespace TP12
 {
-    public partial class Form2 : Form
+    public partial class Form3 : Form
     {
-        public Form2()
+        public Form3()
         {
             InitializeComponent();
         }
@@ -22,11 +22,38 @@ namespace TP12
         BindingSource AdhérentBS = new BindingSource();
         SqlDataReader dr;
         SqlCommand cmd;
-        private void Form2_Load(object sender, EventArgs e)
+        private void Form3_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'bibliothequeDataSet.Thème' table. You can move, or remove it, as needed.
-            this.thèmeTableAdapter.Fill(this.bibliothequeDataSet.Thème);
+            // TODO: This line of code loads data into the 'bibliothequeDataSet1.Thème' table. You can move, or remove it, as needed.
+            this.thèmeTableAdapter.Fill(this.bibliothequeDataSet1.Thème);
 
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (button1.Text == "Nouveau")
+            {
+                textBox1.Clear();
+                textBox2.Clear();
+                textBox3.Clear();
+                dateTimePicker1.ResetText();
+                button1.Text = "Ajouter";
+
+            }
+            else if (button1.Text == "Ajouter")
+            {
+                con.Open();
+
+                string req = "insert into Livre values (" + textBox1.Text + ",'" + textBox2.Text + "','" + textBox3.Text + "','" + dateTimePicker1.Value + "')";
+                SqlCommand sc = new SqlCommand(req, con);
+                sc.ExecuteNonQuery();
+                MessageBox.Show("Ajout bien fait");
+
+                con.Close();
+
+                button1.Text = "Nouveau";
+
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -35,7 +62,7 @@ namespace TP12
             {
                 con.Open();
 
-                string req = "update Thème set IntituléTh ='" + textBox2.Text + "' where CodeTh = '" + textBox1.Text + "'";
+                string req = "update Livre set Titre ='" + textBox2.Text + "' Auteur='" + textBox3.Text + "' NbExemplaires='"+dateTimePicker1.Value+"' where CodeTh = '" + textBox4.Text + "'";
                 SqlCommand cmd = new SqlCommand(req, con);
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("Modifcation bien faite");
@@ -55,7 +82,7 @@ namespace TP12
             {
                 con.Open();
 
-                string req = "delete from Thème  where CodeTh = '" + textBox1.Text + "'";
+                string req = "delete from Livre  where CodeL = '" + textBox1.Text + "'";
                 SqlCommand cmd = new SqlCommand(req, con);
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("supprission bien faite");
@@ -75,17 +102,21 @@ namespace TP12
             try
             {
                 con.Open();
-                string req = "select * from Thème";
+                string req = "select * from Livre";
                 SqlCommand cmd = new SqlCommand(req, con);
                 SqlDataReader dr = cmd.ExecuteReader();
                 dt.Load(dr);
 
                 db.DataSource = dt;
                 this.textBox1.DataBindings.Clear();
-                textBox1.DataBindings.Add(new Binding("Text", db, "CodeTh"));
+                textBox1.DataBindings.Add(new Binding("Text", db, "CodeL"));
                 this.textBox2.DataBindings.Clear();
-                textBox2.DataBindings.Add(new Binding("Text", db, "IntituléTh"));
-
+                textBox2.DataBindings.Add(new Binding("Text", db, "Titre"));
+                this.textBox3.DataBindings.Clear();
+                textBox3.DataBindings.Add(new Binding("Text", db, "Auteur"));
+                this.dateTimePicker1.DataBindings.Clear();
+                textBox2.DataBindings.Add(new Binding("Text", db, "NbExemplaires"));
+                this.comboBox1.DataBindings.Clear();
 
             }
             catch (Exception ex)
@@ -122,69 +153,6 @@ namespace TP12
         {
             Naviguer();
             db.MoveLast();
-        }
-
-        private void button9_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                con.Open();
-
-                string req = "select *  from Thème where CodeTh = " + textBox4.Text + "";
-                SqlCommand cmd = new SqlCommand(req, con);
-                SqlDataReader dr = cmd.ExecuteReader();
-                DataTable dt = new DataTable();
-
-                while (dr.Read())
-                {
-                    MessageBox.Show("" + dr[0] + " " + dr[1]);
-                }
-                dr.Close();
-                con.Close();
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if(button1.Text == "Nouveau")
-            {
-                textBox1.Clear();
-                textBox2.Clear();
-                button1.Text = "Ajouter";
-
-            }
-            else if (button1.Text == "Ajouter")
-            {
-                    con.Open();
-
-                    string req = "insert into Thème values (" + textBox1.Text + ",'" + textBox2.Text + "')";
-                    SqlCommand sc = new SqlCommand(req, con);
-                    sc.ExecuteNonQuery();
-                    MessageBox.Show("Ajout bien fait");
-
-                    con.Close();
-                    
-                    button1.Text = "Nouveau";
-
-            }
-           
-        }
-
-        private void button10_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button10_Click_1(object sender, EventArgs e)
-        {
-            this.Hide();
-            Form3 f = new Form3();
-            f.Show();
         }
     }
 }
