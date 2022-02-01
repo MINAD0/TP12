@@ -87,7 +87,7 @@ namespace TP12
 
                 db.DataSource = dt;
                 this.textBox1.DataBindings.Clear();
-                textBox1.DataBindings.Add(new Binding("Text", db, "CodeTh"));
+                textBox1.DataBindings.Add(new Binding("Text", db, "CodeA"));
                 this.textBox2.DataBindings.Clear();
                 textBox2.DataBindings.Add(new Binding("Text", db, "NomA"));
                 this.textBox3.DataBindings.Clear();
